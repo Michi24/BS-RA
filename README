@@ -1,0 +1,50 @@
+Bemerkung:
+Die eingelesene Adresse wird durch 4 geteilt, da der Rest der Adresse als Offset betrachtet wird.
+
+Das Programm wurde mit valgrind --leak-check=full überprüft und es wird sämtlcher allokierter Speicher wieder freigegeben.
+
+16384
+
+Aufgabe 7.2:
+Lassen Sie Ihren Simulator für die folgenden Fälle (Cachegröße, Assoz, Instr./Data/Unified)
+die Hit-Rate bestimmen:
+Trace 16K, A1,U
+tomcatv	Hitrate: 0.847
+gcc		Hitrate: 0.829
+
+Trace 16K,A2,U 
+tomcatv	Hitrate: 0.868
+gcc		Hitrate: 0.888
+
+Trace 16K,A4,U
+tomcatv	Hitrate: 0.868
+gcc		Hitrate: 0.936
+
+Trace  4K,A1,I
+tomcatv	Hitrate: 0.998
+gcc		Hitrate: 0.602
+
+Trace  4K,A2,I
+tomcatv Hitrate: 0.998
+gcc		Hitrate: 0.638
+
+Trace  4K,A1,D
+tomcatv	Hitrate: 0.572
+gcc		Hitrate: 0.855
+
+Trace  4K,A2,D
+tomcatv	Hitrate: 0.491
+gcc		Hitrate: 0.891
+
+Aufgabe 7.3:
+Der 4-Wege Assoziativcache ist am effizientesten.
+Da die Daten fast nur auf Intructions besteht, wäre es sinnvoll den größten Teil des Caches für Instructions zu verwenden.
+
+
+0 read data
+1 write data
+2 instruction fetch
+
+U - 0 1 2
+D - 0 1 
+I - 2
