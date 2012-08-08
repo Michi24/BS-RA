@@ -152,7 +152,13 @@ int main(){
 	
 }
 
-/** Funktion zum erfragen der ältesten Position einer Cacheline. Rückgabewert ist der Arrayindex */
+/** 
+ * Funktion zum erfragen der ältesten Position einer Cacheline. Rückgabewert ist der Arrayindex 
+ * @param cline Pointer auf Cacheline
+ * @param asso Integer für die Assoziativität.
+ * @post Keine Änerungen in der Zeile selbst
+ * @return Integer mit Position der ältesten Cacheline
+ */
 int age_getter(cacheline** cline, int asso){
 	int mx = cline[0]->age;
 	int pos = 0;
@@ -165,22 +171,37 @@ int age_getter(cacheline** cline, int asso){
 	return pos;
 }
 
-/** Prozedur zum erfragen der ältesten Position einer Cacheline. */
+/** 
+ * Prozedur zum erfragen der ältesten Position einer Cacheline.
+ * @param cline Pointer auf Cacheline
+ * @param asso Integer für die Assoziativität.
+ * @post Nur Bildschirmausgabe
+ * @return -
+ */
 void printer(cacheline** cline, int asso){
 	for (int j = 0; j<asso; j++) { 
 		printf("cline[%i]: %i -age: %i - ", j, cline[j]->tag, cline[j]->age);
 	}
 }
 
-/** Prozedur zum setzen des Alters in einer Cache-line. */
+/** 
+ * Prozedur zum setzen des Alters in einer Cache-line.
+ * @param cline Pointer auf Cacheline
+ * @param i Integer mit der Position des nicht zu ändernden Alters
+ * @param asso Integer für die Assoziativität.
+ * @post Jedes Alter in der Cacheline ausser der Stelle i wird erhöht
+ * @return -
+ */
 void age_setter(cacheline** cline, int i, int asso){
 	/* Einträge zahlen */
 	int max = 0;
+	/* Länge der Cacheline feststellen */
 	for (int j = 0; j<asso; j++) { 
 		if (cline[j] != NULL) {
 			max++;
 		}
 	}
+	/* Alter setzen */
 	for (int j = 0; j<max; j++) { 
 		if (j != i) {
 			cline[j]->age++;
@@ -188,7 +209,13 @@ void age_setter(cacheline** cline, int i, int asso){
 	}
 }
 
-/** Funktion zum Abfragen eines Datepfades. Rückgabewert ist der Pfad */
+/** 
+ * Funktion zum Abfragen eines Strings. Wird nur Verlassen bei erfolgreicher 
+ * Eingabe
+ * @param question Frage die angezeigt wird
+ * @post -
+ * @return Pointer auf die eingegebene Antwort
+ */
 char* read_path(char* question){
 	char* erg = malloc(PATHLENGTH);
 	if (erg == NULL){
@@ -211,7 +238,13 @@ char* read_path(char* question){
 	return erg;
 }
 
-/** Methode zum Abfragen einer Zahl. Rückgabewert ist die Zahl */
+/** 
+ * Methode zum Abfragen einer Zahl. Wird nur Verlassen bei erfolgreicher Eingabe
+ * @param question Frage die angezeigt wird
+ * @post -
+ * @return Integer der eingegeben Zahl
+ */
+/** */
 int read_number(char* question){
 	/* char array für die Eingabe. Das Array ist größer 1 um etwas mehr komfort bei der Eingabe zu ermöglichen. */
 	char text[20];
